@@ -51,8 +51,8 @@ function main(): void {
     renderer.render(scene, camera);
 
     function projectPointOntoPlane(): void {
-        const cameraPosition = camera.getWorldPosition(new THREE.Vector3());
-        const direction = sphereMesh.getWorldPosition(new THREE.Vector3()).sub(cameraPosition).normalize();
+        const cameraPosition = camera.position;
+        const direction = sphereMesh.position.clone().sub(cameraPosition).normalize();
         const ray = new THREE.Ray(cameraPosition, direction);
         if (!ray.intersectPlane(plane, sphereMesh.position)) {
             console.error("No intersection found");
