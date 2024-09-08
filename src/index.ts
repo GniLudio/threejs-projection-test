@@ -18,20 +18,20 @@ function main(): void {
     const renderer = new THREE.WebGLRenderer({ antialias: true, canvas });
 
     const camera = new THREE.PerspectiveCamera(75, 2, 1, 100_000);
-    camera.position.set(10, 20, 100);
+    camera.position.set(10, 20, 1000);
 
     const scene = new THREE.Scene();
 
-    scene.add(new THREE.AxesHelper(100_000));
+    //scene.add(new THREE.AxesHelper(100_000));
 
-    const planeGeometry = new THREE.PlaneGeometry(25, 25);
-    const planeMaterial = new THREE.MeshBasicMaterial({ color: 0xFFFFFF, side: THREE.DoubleSide });
+    const planeGeometry = new THREE.PlaneGeometry(100_000, 100_000, 100, 100);
+    const planeMaterial = new THREE.MeshBasicMaterial({ side: THREE.DoubleSide, wireframe: true });
     const planeMesh = new THREE.Mesh(planeGeometry, planeMaterial);
     planeMesh.position.copy(plane.coplanarPoint(new THREE.Vector3()));
     planeMesh.quaternion.setFromUnitVectors(new THREE.Vector3(0, 0, 1), plane.normal);
     scene.add(planeMesh);
 
-    const sphereGeometry = new THREE.SphereGeometry();
+    const sphereGeometry = new THREE.SphereGeometry(100);
     const sphereMaterial = new THREE.MeshBasicMaterial({ color: 0xFF0000 });
     const sphereMesh = new THREE.Mesh(sphereGeometry, sphereMaterial);
     scene.add(sphereMesh);
